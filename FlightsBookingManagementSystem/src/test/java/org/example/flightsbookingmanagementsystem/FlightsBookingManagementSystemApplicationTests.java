@@ -1,0 +1,13 @@
+package org.example.flightsbookingmanagementsystem;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class FlightsBookingManagementSystemApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
