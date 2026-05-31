@@ -33,7 +33,7 @@ public class User {
 
     @NotEmpty(message = "Password must included!")
     @Size(min = 8, max = 20, message = "Password must consist of at least 8 characters!")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$", message = "Password must have capital and small characters, digits, and special character!")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@!#$%^&+=]).{8,}$", message = "Password must have capital and small characters, digits, and special character!")
     @Column(columnDefinition = "varchar(20)", nullable = false)
     private String password;
 

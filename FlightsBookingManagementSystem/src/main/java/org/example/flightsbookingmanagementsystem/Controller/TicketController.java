@@ -45,10 +45,10 @@ public class TicketController {
         return ResponseEntity.status(200).body(new ApiResponse("Ticket was deleted successfully"));
     }
 
-    @PostMapping("/buy-ticket/{userId}/{flightId}/{cardNumber}")
-    public ResponseEntity<?> buyTicket(@PathVariable Integer userId, @PathVariable Integer flightId, @PathVariable Long cardNumber, @RequestBody @Valid Passenger passenger) {
+    @PostMapping("/buy-ticket/{userId}/{flightId}/{cardNumber}/{seatNumber}")
+    public ResponseEntity<?> buyTicket(@PathVariable Integer userId, @PathVariable Integer flightId, @PathVariable Long cardNumber, @PathVariable String seatNumber, @RequestBody @Valid Passenger passenger) {
 
-        ticketService.buyTicket(userId, flightId, cardNumber, passenger);
+        ticketService.buyTicket(userId, flightId, cardNumber, seatNumber, passenger);
         return ResponseEntity.status(200).body(new ApiResponse("Ticket was purchased successfully!"));
     }
 
@@ -57,6 +57,11 @@ public class TicketController {
     public ResponseEntity<?> refundTicket(@PathVariable Integer userId, @PathVariable Integer ticketId, @PathVariable Long cardNumber, @PathVariable Integer passengerId) {
         ticketService.refundTicket(userId, ticketId, cardNumber, passengerId);
         return ResponseEntity.status(200).body(new ApiResponse("Ticket was refunded successfully!"));
+    }
+
+    @GetMapping("/available-seats/{flightId}")
+    public ResponseEntity<?> getAvailableSeatsMap(@PathVariable Integer flightId) {
+        return ResponseEntity.status(200).body(ticketService.getAvailableSeatsMap(flightId));
     }
 
 

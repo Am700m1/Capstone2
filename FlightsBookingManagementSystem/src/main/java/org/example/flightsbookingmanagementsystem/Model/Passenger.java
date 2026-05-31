@@ -6,6 +6,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Check;
 
 import java.time.LocalDate;
 
@@ -56,4 +57,16 @@ public class Passenger {
     @Past(message = "Date of Birth must be in the Past!")
     @Column(columnDefinition = "date", nullable = false)
     private LocalDate dateOfBirth;
+
+
+    @NotEmpty(message = "Gender must be included!")
+    @Pattern(regexp = "^(MALE|FEMALE)$", message = "Gender must be either MALE or FEMALE")
+    @Check(constraints = "gender IN ('MALE','FEMALE')")
+    @Column(columnDefinition = "varchar(10)", nullable = false)
+    private String gender;
+
+    @NotEmpty(message = "Passport number must be included!")
+    @Size(min = 8, max = 9, message = "Passport number must consist of 8 or 9 characters")
+    @Column(columnDefinition = "varchar(10)", nullable = false, unique = true)
+    private String passportNumber;
 }

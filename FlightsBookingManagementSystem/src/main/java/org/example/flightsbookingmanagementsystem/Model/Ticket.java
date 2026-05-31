@@ -2,10 +2,7 @@ package org.example.flightsbookingmanagementsystem.Model;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,10 +36,10 @@ public class Ticket {
     private Integer userId;
 
 
-    @NotNull(message = "Seat number must be included")
-    @PositiveOrZero(message = "Seat number cannot be negative!")
-    @Column(columnDefinition = "int", nullable = false)
-    private Integer seatNumber;
+    @NotEmpty(message = "Seat number must be included")
+    @Column(columnDefinition = "varchar(10)", nullable = false)
+    private String seatNumber;
+
 
     @Column(columnDefinition = "boolean default false")
     private Boolean purchased;
